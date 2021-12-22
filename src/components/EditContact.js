@@ -1,18 +1,23 @@
 import React from "react";
 
-class AddContact extends React.Component {
-  state = {
-    name: "",
-    email: "",
-  };
+class EditContact extends React.Component {
+  constructor(props) {
+    super(props);
+    const { id, name, email } = props.location.state.contact;
+    this.state = {
+      id,
+      name,
+      email,
+    };
+  }
 
-  add = (e) => {
+  update = (e) => {
     e.preventDefault();
     if (this.state.name === "" || this.state.email === "") {
       alert("ALl the fields are mandatory!");
       return;
     }
-    this.props.addContactHandler(this.state);
+    this.props.updateContactHandler(this.state);
     console.log("this s", this.state);
     this.setState({ name: "", email: "" });
     this.props.history.push("/");
@@ -20,8 +25,8 @@ class AddContact extends React.Component {
   render() {
     return (
       <div className="ui main">
-        <h2>Add Contact</h2>
-        <form className="ui form" onSubmit={this.add}>
+        <h2>Edit Contact</h2>
+        <form className="ui form" onSubmit={this.update}>
           <div className="field">
             <label>Name</label>
             <input
@@ -42,12 +47,11 @@ class AddContact extends React.Component {
               onChange={(e) => this.setState({ email: e.target.value })}
             />
           </div>
-          <button className="ui button blue">Add</button>
+          <button className="ui button blue">Update</button>
         </form>
       </div>
     );
   }
 }
 
-export default AddContact;
-
+export default EditContact;
