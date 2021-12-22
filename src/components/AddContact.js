@@ -50,3 +50,10 @@ class AddContact extends React.Component {
 }
 
 export default AddContact;
+
+// git init
+// git add README.md
+// git commit -m "first commit"
+// git branch -M main
+// git remote add origin https://github.com/EricChukoltyansky/Todo.git
+// git push -u origin main
